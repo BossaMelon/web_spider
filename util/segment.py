@@ -28,8 +28,7 @@ def downloadFile(url, spos, fpos, file):
 
 
 def multiThreadDownload(url, file_path, file_size, thread_num=10):
-    #     print(file_path)
-    #     print(file_path.exists())
+
     if file_path.exists():
         file_path = file_path.with_name('_' + file_path.name)
     file_path.touch()
