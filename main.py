@@ -29,8 +29,7 @@ for num, key in enumerate(course_dict):
     course_no_dict.update({num: key})
 print(20 * '*')
 
-# course_no = int(input('Choose a course by number: '))
-course_no = 23
+course_no = int(input('Choose a course by number: '))
 assert course_no in range(len(course_dict))
 
 course_title = course_no_dict[course_no]
@@ -49,10 +48,10 @@ soup = BeautifulSoup(html, 'html.parser')
 
 info_dic = {}
 
-for section in soup.find_all('div', {'class': 'col-sm-12 course-section'}):
+for num, section in enumerate(soup.find_all('div', {'class': 'col-sm-12 course-section'})):
     sectionTitle = section.find('div', {'class': 'section-title'})
     section_name = list(sectionTitle.strings)[3].split('\n')[1].split('\n')[0].split('(')[0].strip()
-
+    section_name = str(num + 1) + '- ' + section_name
     section_info_list = []
 
     print(f'Section: {section_name}')
@@ -78,6 +77,9 @@ print(20 * '*')
 
 # make dir
 print('Creating folder')
+if not (Path() / 'resource').exists():
+    (Path() / 'resource').mkdir()
+
 course_path = Path() / 'resource' / course_title
 if not course_path.exists():
     course_path.mkdir()
