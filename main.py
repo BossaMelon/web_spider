@@ -1,10 +1,11 @@
 from pathlib import Path
-
 import requests
 from bs4 import BeautifulSoup
 import time
 from util.get_cookies import get_cookies
 from util.segment import multiThreadDownload
+from util.send_email import send_email
+
 
 cookies = get_cookies()
 headers = {'Cookie': cookies}
@@ -21,7 +22,7 @@ for i in soup_home.find_all('div', {'class': 'row'}):
     course_url = 'https://' + 'codewithmosh.com' + course_url
     course_dict.update({course_name: course_url})
 
-print('avalible courses')
+print('available courses')
 print(20 * '*')
 course_no_dict = {}
 for num, key in enumerate(course_dict):
@@ -122,6 +123,10 @@ for section in info_dic.keys():
         print(10 * '*')
 
 endTime = time.time()
-time = endTime - startTime
+total_time = endTime - startTime
 print('all finished!')
-print(f'total time:{time}')
+print(f'total time: {total_time}')
+
+
+message = f'{course_title} download complete! Total time: {total_time:.2f}s'
+send_email(message)
