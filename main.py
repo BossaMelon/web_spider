@@ -22,7 +22,7 @@ for i in soup_home.find_all('div', {'class': 'row'}):
     course_url = 'https://' + 'codewithmosh.com' + course_url
     course_dict.update({course_name: course_url})
 
-print('available courses')
+print('Available courses')
 print(20 * '*')
 course_no_dict = {}
 for num, key in enumerate(course_dict):
@@ -35,8 +35,7 @@ assert course_no in range(len(course_dict))
 
 course_title = course_no_dict[course_no]
 print(f'"{course_title}" is chosen')
-# print(f'url: {course_dict[course_no_dict[course_no]]}')
-print('Searching download infomation...')
+print('Gathering download information...')
 print()
 
 # ****************
@@ -125,7 +124,7 @@ for section in info_dic.keys():
 endTime = time.time()
 total_time = endTime - startTime
 print('all finished!')
-print(f'total time: {total_time}')
+print(f'total time: {total_time:.0f}s')
 
 
 message = f'{course_title} download complete! Total time: {total_time:.2f}s'
