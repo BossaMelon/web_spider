@@ -33,7 +33,7 @@ print(20 * '*')
 course_no = int(input('Choose a course by number: '))
 assert course_no in range(len(course_dict))
 
-course_title = course_no_dict[course_no]
+course_title = course_no_dict[course_no].replace(':',' ')
 print(f'"{course_title}" is chosen')
 print('Gathering download information...')
 print()
