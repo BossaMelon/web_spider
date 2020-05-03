@@ -51,7 +51,7 @@ info_dic = {}
 for num, section in enumerate(soup.find_all('div', {'class': 'col-sm-12 course-section'})):
     sectionTitle = section.find('div', {'class': 'section-title'})
     section_name = list(sectionTitle.strings)[3].split('\n')[1].split('\n')[0].split('(')[0].strip()
-    section_name = str(num + 1) + '- ' + section_name
+    section_name = str(num + 1) + '- ' + section_name.replace(':',' ')
     section_info_list = []
 
     print(f'Section: {section_name}')
@@ -99,7 +99,7 @@ startTime = time.time()
 for section in info_dic.keys():
     for file_info in info_dic[section]:
         download_link = file_info['file_url']
-        download_name = file_info['file_name']
+        download_name = file_info['file_name'].replace(':',' ')
         download_size = file_info['file_size']
 
         print(f'Downloading: {download_name}')
@@ -129,3 +129,4 @@ print(f'total time: {total_time:.0f}s')
 
 message = f'{course_title} download complete! Total time: {total_time:.2f}s'
 send_email(message)
+
